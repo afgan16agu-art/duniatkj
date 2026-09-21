@@ -141,3 +141,43 @@ footer{ padding:40px 28px 44px; }
   .stat-row{ gap:20px; }
   .cert-row{ flex-direction:column; align-items:flex-start; gap:6px; }
 }
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img, svg {
+    max-width: 100%;
+}
+
+.diagram-holder {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
+}
+
+@media (max-width: 560px) {
+    .wrap {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .hero {
+        padding-top: 50px;
+        padding-bottom: 40px;
+    }
+
+    .hero-grid {
+        gap: 30px;
+    }
+
+    .diagram-holder {
+        width: 100%;
+    }
+
+    .diagram-holder svg {
+        width: 100%;
+        height: auto;
+    }
+}

@@ -36,66 +36,74 @@
   <div class="wrap">
     <span class="kicker">Alat yang dipakai</span>
     <h1>Tools yang umum ditemui di dunia TKJ</h1>
-    <p>Sebagian besar bisa dicoba gratis untuk latihan sebelum memegang perangkat sungguhan.</p>
+    <p>Sebagian besar bisa dicoba gratis untuk latihan sebelum memegang perangkat sungguhan. Klik salah satu kartu untuk lihat penjelasan lengkapnya.</p>
   </div>
 </section>
 
 <main>
   <div class="wrap">
     <div class="tool-grid">
-      <div class="tool-item">
+
+      <div class="tool-item" data-tool="packet-tracer" tabindex="0">
         <div class="tool-icon">
           <img src="packet-tracer.png" alt="Cisco Packet Tracer">
         </div>
         <span class="cat">simulasi</span>
         <h3>Cisco Packet Tracer</h3>
         <p>Simulasi topologi jaringan untuk berlatih konfigurasi router dan switch tanpa perangkat fisik.</p>
+        <span class="see-more">Lihat detail &rarr;</span>
       </div>
 
-      <div class="tool-item">
+      <div class="tool-item" data-tool="wireshark" tabindex="0">
         <div class="tool-icon">
           <img src="wireshark.png" alt="Wireshark">
         </div>
         <span class="cat">analisis</span>
         <h3>Wireshark</h3>
         <p>Menangkap dan menganalisis lalu lintas data yang melewati jaringan, paket demi paket.</p>
+        <span class="see-more">Lihat detail &rarr;</span>
       </div>
 
-      <div class="tool-item">
+      <div class="tool-item" data-tool="mikrotik" tabindex="0">
         <div class="tool-icon">
           <img src="mikrotik.png" alt="MikroTik RouterOS">
         </div>
         <span class="cat">perangkat</span>
         <h3>MikroTik RouterOS</h3>
         <p>Sistem operasi router yang populer untuk konfigurasi jaringan skala kecil-menengah.</p>
+        <span class="see-more">Lihat detail &rarr;</span>
       </div>
 
-      <div class="tool-item">
+      <div class="tool-item" data-tool="virtualbox" tabindex="0">
         <div class="tool-icon">
           <img src="virtualbox.png" alt="VirtualBox / Proxmox">
         </div>
         <span class="cat">virtualisasi</span>
         <h3>VirtualBox / Proxmox</h3>
         <p>Menjalankan beberapa sistem operasi sekaligus untuk latihan server tanpa perangkat tambahan.</p>
+        <span class="see-more">Lihat detail &rarr;</span>
       </div>
 
-      <div class="tool-item">
+      <div class="tool-item" data-tool="linux" tabindex="0">
         <div class="tool-icon">
           <img src="linux.png" alt="Linux (Ubuntu Server / Debian)">
         </div>
         <span class="cat">sistem operasi</span>
         <h3>Linux (Ubuntu Server / Debian)</h3>
         <p>Dasar dari sebagian besar server &mdash; wajib dikuasai untuk administrasi sistem.</p>
+        <span class="see-more">Lihat detail &rarr;</span>
       </div>
 
-      <div class="tool-item">
+      <div class="tool-item" data-tool="zabbix" tabindex="0">
         <div class="tool-icon">
           <img src="zabbix.png" alt="PRTG / Zabbix">
         </div>
         <span class="cat">pemantauan</span>
         <h3>PRTG / Zabbix</h3>
         <p>Memantau kondisi jaringan secara real-time: beban trafik, uptime, dan gangguan perangkat.</p>
+        <span class="see-more">Lihat detail &rarr;</span>
       </div>
+
     </div>
   </div>
 
@@ -120,6 +128,203 @@
     </div>
   </div>
 </footer>
+
+<!-- ===== MODAL DETAIL TOOL ===== -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" role="dialog" aria-modal="true">
+    <button class="modal-close" id="modalClose" aria-label="Tutup">&times;</button>
+    <div class="modal-icon" id="modalIcon"></div>
+    <span class="cat" id="modalCat"></span>
+    <h2 id="modalTitle"></h2>
+    <p class="modal-intro" id="modalIntro"></p>
+
+    <h4>Kegunaan utama</h4>
+    <ul id="modalUses"></ul>
+
+    <h4>Fitur kunci</h4>
+    <ul id="modalFeatures"></ul>
+
+    <h4>Cara mulai belajar</h4>
+    <p id="modalLearn"></p>
+  </div>
+</div>
+
+<script>
+const toolData = {
+  "packet-tracer": {
+    icon: "packet-tracer.png",
+    cat: "simulasi",
+    title: "Cisco Packet Tracer",
+    intro: "Packet Tracer adalah perangkat lunak simulasi jaringan buatan Cisco yang memungkinkan pengguna merancang, membangun, dan menguji topologi jaringan secara virtual tanpa memerlukan perangkat keras sungguhan.",
+    uses: [
+      "Berlatih konfigurasi dasar router dan switch Cisco (CLI dan mode grafis)",
+      "Mensimulasikan jaringan LAN/WAN skala kecil hingga menengah",
+      "Media utama persiapan sertifikasi CCNA",
+      "Menguji skenario troubleshooting sebelum diterapkan ke perangkat asli"
+    ],
+    features: [
+      "Drag-and-drop perangkat jaringan (router, switch, PC, server, access point)",
+      "Mode simulasi paket data secara real-time untuk melihat alur trafik",
+      "Mendukung protokol umum: OSPF, EIGRP, VLAN, DHCP, ACL, dan lainnya",
+      "Bisa dijalankan di Windows, Linux, dan mode multiuser untuk kelas"
+    ],
+    learn: "Download gratis melalui Cisco Networking Academy (perlu daftar akun). Mulai dari topologi sederhana dua PC dan satu switch, lalu tingkatkan bertahap ke jaringan dengan banyak router dan VLAN."
+  },
+  "wireshark": {
+    icon: "wireshark.png",
+    cat: "analisis",
+    title: "Wireshark",
+    intro: "Wireshark adalah network protocol analyzer open-source yang menangkap dan menampilkan data yang melintas di jaringan secara detail, hingga ke level paket individual.",
+    uses: [
+      "Mendiagnosis masalah koneksi dan lambatnya jaringan",
+      "Menganalisis protokol (TCP, UDP, HTTP, DNS, dll) untuk keperluan belajar",
+      "Deteksi aktivitas mencurigakan dalam konteks keamanan jaringan",
+      "Verifikasi apakah aplikasi mengirim data sesuai yang diharapkan"
+    ],
+    features: [
+      "Capture trafik secara live dari interface jaringan manapun",
+      "Filter tampilan paket yang sangat fleksibel (display filter)",
+      "Mampu merekonstruksi ulang stream komunikasi (Follow TCP Stream)",
+      "Mendukung ratusan protokol jaringan"
+    ],
+    learn: "Install dari wireshark.org (gratis). Mulai dengan capture trafik di jaringan sendiri saat browsing biasa, lalu coba filter berdasarkan protokol seperti 'http' atau 'dns' untuk memahami pola paketnya."
+  },
+  "mikrotik": {
+    icon: "mikrotik.png",
+    cat: "perangkat",
+    title: "MikroTik RouterOS",
+    intro: "RouterOS adalah sistem operasi buatan MikroTik yang mengubah komputer atau perangkat khusus (RouterBoard) menjadi router dengan fitur jaringan lengkap, populer di kalangan ISP kecil-menengah dan sekolah di Indonesia.",
+    uses: [
+      "Manajemen bandwidth dan pembagian trafik antar pengguna",
+      "Konfigurasi routing statis maupun dinamis",
+      "Membangun hotspot dan sistem autentikasi pengguna WiFi",
+      "Firewall dan keamanan jaringan skala kecil-menengah"
+    ],
+    features: [
+      "Winbox: aplikasi GUI untuk konfigurasi tanpa command line",
+      "Queue Tree dan Simple Queue untuk manajemen bandwidth granular",
+      "Dukungan VPN (PPTP, L2TP, OpenVPN, WireGuard)",
+      "Harga perangkat RouterBoard relatif terjangkau untuk skala sekolah/kantor kecil"
+    ],
+    learn: "Bisa dicoba lewat GNS3 atau VirtualBox menggunakan file image RouterOS (CHR - Cloud Hosted Router) tanpa perlu beli perangkat fisik dulu. MikroTik juga punya sertifikasi resmi bernama MTCNA untuk pemula."
+  },
+  "virtualbox": {
+    icon: "virtualbox.png",
+    cat: "virtualisasi",
+    title: "VirtualBox / Proxmox",
+    intro: "Keduanya adalah perangkat lunak virtualisasi yang memungkinkan menjalankan satu atau lebih sistem operasi di dalam satu komputer fisik. VirtualBox cocok untuk pemakaian desktop, sedangkan Proxmox dipakai di level server produksi.",
+    uses: [
+      "Membangun lab server tanpa perlu banyak perangkat fisik",
+      "Mencoba sistem operasi baru (Linux, Windows Server) dengan aman",
+      "Simulasi jaringan multi-server untuk latihan administrasi",
+      "Proxmox khususnya dipakai untuk hosting VM di lingkungan produksi nyata"
+    ],
+    features: [
+      "VirtualBox: gratis, ringan, cocok untuk laptop/PC biasa",
+      "Proxmox: berbasis web, mendukung clustering dan container (LXC)",
+      "Snapshot untuk menyimpan kondisi VM dan rollback kapan saja",
+      "Virtual networking antar VM untuk simulasi topologi jaringan"
+    ],
+    learn: "Mulai dari VirtualBox (gratis di virtualbox.org) untuk instal Ubuntu Server atau Debian sebagai latihan pertama. Setelah terbiasa, coba Proxmox VE di komputer bekas atau mini PC untuk pengalaman yang lebih mendekati server sungguhan."
+  },
+  "linux": {
+    icon: "linux.png",
+    cat: "sistem operasi",
+    title: "Linux (Ubuntu Server / Debian)",
+    intro: "Linux adalah sistem operasi open-source yang menjadi fondasi mayoritas server di dunia, termasuk web server, database server, dan infrastruktur cloud. Ubuntu Server dan Debian adalah dua distribusi yang paling umum dipelajari di bidang TKJ.",
+    uses: [
+      "Menjalankan web server (Apache, Nginx) dan database server",
+      "Administrasi sistem lewat command line (Bash)",
+      "Dasar dari banyak layanan cloud dan container (Docker)",
+      "Server DNS, DHCP, FTP, dan mail server"
+    ],
+    features: [
+      "Gratis dan open-source, tanpa biaya lisensi",
+      "Stabil dan ringan, cocok dijalankan tanpa antarmuka grafis",
+      "Dukungan komunitas besar dan dokumentasi melimpah",
+      "Package manager (apt) memudahkan instalasi software"
+    ],
+    learn: "Install di VirtualBox terlebih dahulu untuk latihan aman. Fokus dulu ke perintah dasar (ls, cd, sudo, apt install), lalu lanjut ke konfigurasi service seperti web server sederhana."
+  },
+  "zabbix": {
+    icon: "zabbix.png",
+    cat: "pemantauan",
+    title: "PRTG / Zabbix",
+    intro: "PRTG dan Zabbix adalah perangkat lunak network monitoring yang memantau kondisi perangkat dan trafik jaringan secara real-time, memberi peringatan otomatis saat terjadi gangguan.",
+    uses: [
+      "Memantau uptime server dan perangkat jaringan",
+      "Deteksi dini gangguan sebelum berdampak ke pengguna",
+      "Analisis beban trafik untuk perencanaan kapasitas jaringan",
+      "Laporan performa jaringan untuk keperluan manajemen IT"
+    ],
+    features: [
+      "Dashboard visual dengan grafik real-time",
+      "Sistem alert (email/notifikasi) saat perangkat down atau beban tinggi",
+      "Zabbix: open-source dan gratis sepenuhnya",
+      "PRTG: punya versi gratis terbatas dengan antarmuka yang sangat mudah dipakai"
+    ],
+    learn: "Untuk pemula, PRTG lebih mudah karena instalasinya cepat dan langsung ada dashboard visual. Zabbix butuh setup server terpisah (biasanya di Linux) tapi lebih fleksibel untuk jaringan skala besar."
+  }
+};
+
+const overlay = document.getElementById('modalOverlay');
+const closeBtn = document.getElementById('modalClose');
+
+document.querySelectorAll('.tool-item').forEach(function(item) {
+  function openModal() {
+    const key = item.getAttribute('data-tool');
+    const data = toolData[key];
+    if (!data) return;
+
+    document.getElementById('modalIcon').innerHTML = '<img src="' + data.icon + '" alt="' + data.title + '">';
+    document.getElementById('modalCat').textContent = data.cat;
+    document.getElementById('modalTitle').textContent = data.title;
+    document.getElementById('modalIntro').textContent = data.intro;
+
+    const usesList = document.getElementById('modalUses');
+    usesList.innerHTML = '';
+    data.uses.forEach(function(u) {
+      const li = document.createElement('li');
+      li.textContent = u;
+      usesList.appendChild(li);
+    });
+
+    const featList = document.getElementById('modalFeatures');
+    featList.innerHTML = '';
+    data.features.forEach(function(f) {
+      const li = document.createElement('li');
+      li.textContent = f;
+      featList.appendChild(li);
+    });
+
+    document.getElementById('modalLearn').textContent = data.learn;
+
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  item.addEventListener('click', openModal);
+  item.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openModal();
+    }
+  });
+});
+
+function closeModal() {
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+closeBtn.addEventListener('click', closeModal);
+overlay.addEventListener('click', function(e) {
+  if (e.target === overlay) closeModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+</script>
 
 </body>
 </html>
